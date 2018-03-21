@@ -9,6 +9,8 @@ TagManager:
   - RightBC
   - FirePoint
   - GroundBC
+  - Enemy2
+  - Sky
   layers:
   - Default
   - TransparentFX
