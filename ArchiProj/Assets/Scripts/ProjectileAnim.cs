@@ -33,8 +33,6 @@ public class ProjectileAnim : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D o){
 		if (o.CompareTag ("Player")) {
 			DestroyProjectile ();
-            var exp = GetComponent<ParticleSystem>();
-            exp.Play();
         }
 	}
 
