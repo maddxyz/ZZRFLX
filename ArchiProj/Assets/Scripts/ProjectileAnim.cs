@@ -8,6 +8,8 @@ public class ProjectileAnim : MonoBehaviour {
 
 	private Transform player;
     private Transform leftBC;
+    private Transform firePoint;
+    private Transform groundBC;
 
 	private Vector2 target;
 
@@ -15,10 +17,20 @@ public class ProjectileAnim : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
         leftBC = GameObject.FindGameObjectWithTag("LeftBC").transform;
+        firePoint = GameObject.FindGameObjectWithTag("FirePoint").transform;
+        groundBC = GameObject.FindGameObjectWithTag("GroundBC").transform;
 
-		//target = new Vector2 (player.position.x-150, player.position.y);
-		target = new Vector2 (leftBC.position.x, player.position.y);
-	}
+        //target = new Vector2 (player.position.x-150, player.position.y);
+
+        /* Utilisation du théorème de Thalès pour calculer y */
+        float y = Mathf.Abs((firePoint.position - groundBC.position).y)
+                    + Mathf.Abs((firePoint.position - leftBC.position).x)
+                            * (Mathf.Abs((player.position - groundBC.position).y) - Mathf.Abs((firePoint.position - groundBC.position).y))
+                            / (Mathf.Abs((player.position - firePoint.position).x));
+
+        //target = new Vector2 (leftBC.position.x, player.position.y);
+        target = new Vector2(leftBC.position.x, groundBC.position.y + y);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -27,6 +39,11 @@ public class ProjectileAnim : MonoBehaviour {
 		if (transform.position.x == target.x && transform.position.y == target.y) {
 			DestroyProjectile ();
 		}
+
+        if(Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 1.0f)
+        {
+            DestroyProjectile();
+        }
 
 	}
 

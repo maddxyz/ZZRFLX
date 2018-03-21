@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114034243234905346}
   m_Layer: 8
   m_Name: beams_24
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

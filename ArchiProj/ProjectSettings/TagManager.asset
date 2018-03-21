@@ -7,6 +7,8 @@ TagManager:
   - Projectile
   - LeftBC
   - RightBC
+  - FirePoint
+  - GroundBC
   layers:
   - Default
   - TransparentFX
