@@ -10,6 +10,7 @@ public class ProjectileAnim : MonoBehaviour {
     private Transform leftBC;
     private Transform firePoint;
     private Transform groundBC;
+    private ParticleSystem exp;
 
 	private Vector2 target;
 
@@ -19,6 +20,8 @@ public class ProjectileAnim : MonoBehaviour {
         leftBC = GameObject.FindGameObjectWithTag("LeftBC").transform;
         firePoint = GameObject.FindGameObjectWithTag("FirePoint").transform;
         groundBC = GameObject.FindGameObjectWithTag("GroundBC").transform;
+
+        exp = GetComponent<ParticleSystem>();
 
         //target = new Vector2 (player.position.x-150, player.position.y);
 
@@ -34,24 +37,38 @@ public class ProjectileAnim : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = Vector2.MoveTowards (transform.position, target, speed * Time.deltaTime);
 
-		if (transform.position.x == target.x && transform.position.y == target.y) {
+        //if(!exp.isPlaying)
+            transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
+        if (transform.position.x == target.x && transform.position.y == target.y) {
 			DestroyProjectile ();
 		}
 
         if(Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 1.0f)
         {
-            DestroyProjectile();
+
+
+            /*if(!exp.isPlaying)
+            {
+                print(exp.isPlaying);
+                print(exp.duration);
+                exp.enableEmission = true;
+                exp.Play();
+                print(exp.isPlaying);
+                Destroy(gameObject, exp.duration);
+            }*/
+            Destroy(gameObject);
+
         }
 
 	}
 
-	void OnTriggerEnter2D(Collider2D o){
-		if (o.CompareTag ("Player")) {
-			DestroyProjectile ();
-        }
-	}
+	//void OnTriggerEnter2D(Collider2D o){
+	//	if (o.CompareTag ("Player")) {
+	//		DestroyProjectile ();
+ //       }
+	//}
 
 	void DestroyProjectile (){
 		Destroy (gameObject);
