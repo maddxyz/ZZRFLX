@@ -37,7 +37,6 @@ public class ProjectileAnim : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         //if(!exp.isPlaying)
             transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
@@ -58,17 +57,19 @@ public class ProjectileAnim : MonoBehaviour {
                 print(exp.isPlaying);
                 Destroy(gameObject, exp.duration);
             }*/
-            Destroy(gameObject);
+			Player p = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
+			p.DamagePlayer (20);
+			Destroy(gameObject);
 
         }
 
 	}
 
-	//void OnTriggerEnter2D(Collider2D o){
-	//	if (o.CompareTag ("Player")) {
-	//		DestroyProjectile ();
- //       }
-	//}
+	void OnTriggerEnter2D(Collider2D o){
+		if (o.CompareTag ("Player")) {
+			
+        }
+	}
 
 	void DestroyProjectile (){
 		Destroy (gameObject);

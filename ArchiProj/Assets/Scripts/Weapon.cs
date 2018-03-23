@@ -12,15 +12,15 @@ public class Weapon : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		firePoint = transform.Find ("FirePoint");
+		/*firePoint = transform.Find ("FirePoint");
 		if (firePoint == null) {
 			Debug.LogError ("No firePoint? WHAT?!");
-		}
+		}*/
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (fireRate == 0) {
+		/*if (fireRate == 0) {
 			if (Input.GetButtonDown ("Fire1")) {
 				Shoot();
 			}
@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour {
 				timeToFire = Time.time + 1/fireRate;
 				Shoot();
 			}
-		}
+		}*/
 	}
 	
 	void Shoot () {
