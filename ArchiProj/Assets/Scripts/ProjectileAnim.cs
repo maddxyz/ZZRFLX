@@ -44,25 +44,17 @@ public class ProjectileAnim : MonoBehaviour {
 			DestroyProjectile ();
 		}
 
-        if(Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 1.0f)
+        if(GameObject.FindGameObjectWithTag("Player"))
         {
-
-
-            /*if(!exp.isPlaying)
+            if (Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 1.0f)
             {
-                print(exp.isPlaying);
-                print(exp.duration);
-                exp.enableEmission = true;
-                exp.Play();
-                print(exp.isPlaying);
-                Destroy(gameObject, exp.duration);
-            }*/
-			Player p = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
-			p.DamagePlayer (20);
-			Destroy(gameObject);
+                Player p = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+                p.DamagePlayer(20);
+                Destroy(gameObject);
 
+            }
         }
-
+       
 	}
 
 	void OnTriggerEnter2D(Collider2D o){

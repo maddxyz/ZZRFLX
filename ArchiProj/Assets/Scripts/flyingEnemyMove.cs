@@ -25,9 +25,13 @@ public class flyingEnemyMove : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 1.0f)
+        if(GameObject.FindGameObjectWithTag("Player"))
         {
-            Destroy(gameObject);
+            if (Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 1.0f)
+            {
+                Destroy(gameObject);
+            }
         }
+        
     }
 }

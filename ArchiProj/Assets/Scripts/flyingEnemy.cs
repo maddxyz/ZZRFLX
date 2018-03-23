@@ -11,6 +11,7 @@ public class flyingEnemy : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        //WaitForSecondsRealtime(10);
         wait = start;
     }
 	

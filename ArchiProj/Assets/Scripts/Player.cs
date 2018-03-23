@@ -56,7 +56,7 @@ public class Player : MonoBehaviour {
 			GameMaster.KillPlayer(this);
 		}
 
-		Debug.LogError("DAMAGED");
+		//Debug.LogError("DAMAGED");
 		anim.SetTrigger ("hit");
 		hit.Play ();
 		grunt.Play ();
