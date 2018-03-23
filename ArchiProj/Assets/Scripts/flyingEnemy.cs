@@ -21,7 +21,7 @@ public class flyingEnemy : MonoBehaviour {
     void AddFlyingEnemy()
     {
         Instantiate(enemy, new Vector2(Random.Range(GameObject.FindGameObjectWithTag("LeftBC").transform.position.x, GameObject.FindGameObjectWithTag("RightBC").transform.position.x), transform.position.y), Quaternion.identity);
-        Invoke("AddFlyingEnemy", 2);
+        Invoke("AddFlyingEnemy", 3);
     }
     void AddSpaceship()
     {

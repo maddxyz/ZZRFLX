@@ -52,7 +52,7 @@ public class ProjectileAnim : MonoBehaviour {
             if (Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 1.0f)
             {
                 Player p = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-                p.DamagePlayer(20);
+                //p.DamagePlayer(20);
                 Destroy(gameObject);
 
             }

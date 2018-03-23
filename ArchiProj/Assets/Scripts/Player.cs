@@ -46,8 +46,8 @@ public class Player : MonoBehaviour {
 
 
 	void Update () {
-		
-	}
+
+    }
 
 	public void DamagePlayer (int damage) {
 		stats.curHealth -= damage;
