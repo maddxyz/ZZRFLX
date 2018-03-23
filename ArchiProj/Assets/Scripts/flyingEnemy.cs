@@ -15,7 +15,7 @@ public class flyingEnemy : MonoBehaviour {
     void Start ()
     {
         Invoke("AddFlyingEnemy", 20);
-        Invoke("AddSpaceship", 5);
+        Invoke("AddSpaceship", 40);
     }
 
     void AddFlyingEnemy()
