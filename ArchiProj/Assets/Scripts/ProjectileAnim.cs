@@ -26,13 +26,16 @@ public class ProjectileAnim : MonoBehaviour {
         //target = new Vector2 (player.position.x-150, player.position.y);
 
         /* Utilisation du théorème de Thalès pour calculer y */
-        float y = Mathf.Abs((firePoint.position - groundBC.position).y)
-                    + Mathf.Abs((firePoint.position - leftBC.position).x)
-                            * (Mathf.Abs((player.position - groundBC.position).y) - Mathf.Abs((firePoint.position - groundBC.position).y))
-                            / (Mathf.Abs((player.position - firePoint.position).x));
+        float y = Mathf.Abs((transform.position - groundBC.position).y)
+                    + Mathf.Abs((transform.position - leftBC.position).x)
+                            * (Mathf.Abs((player.position - groundBC.position).y) - Mathf.Abs((transform.position - groundBC.position).y))
+                            / (Mathf.Abs((player.position - transform.position).x));
 
         //target = new Vector2 (leftBC.position.x, player.position.y);
-        target = new Vector2(leftBC.position.x, groundBC.position.y + y);
+        if(transform.position.x > player.position.x)
+            target = new Vector2(leftBC.position.x, groundBC.position.y + y);
+        else
+            target = new Vector2(-leftBC.position.x, groundBC.position.y + y);
     }
 	
 	// Update is called once per frame
@@ -54,7 +57,6 @@ public class ProjectileAnim : MonoBehaviour {
 
             }
         }
-       
 	}
 
 	void OnTriggerEnter2D(Collider2D o){

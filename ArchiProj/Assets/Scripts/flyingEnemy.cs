@@ -7,25 +7,24 @@ public class flyingEnemy : MonoBehaviour {
     private float wait;
     public float start;
     public GameObject enemy;
+    public GameObject EnemySpaceship;
+
+
 
     // Use this for initialization
     void Start ()
     {
-        //WaitForSecondsRealtime(10);
-        wait = start;
+        Invoke("AddFlyingEnemy", 20);
+        Invoke("AddSpaceship", 5);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    void AddFlyingEnemy()
     {
-        if (wait <= 0)
-        {
-            Instantiate(enemy, new Vector2(Random.Range(GameObject.FindGameObjectWithTag("LeftBC").transform.position.x, GameObject.FindGameObjectWithTag("RightBC").transform.position.x), transform.position.y), Quaternion.identity);
-            wait = start;
-        }
-        else
-        {
-            wait -= Time.deltaTime;
-        }
+        Instantiate(enemy, new Vector2(Random.Range(GameObject.FindGameObjectWithTag("LeftBC").transform.position.x, GameObject.FindGameObjectWithTag("RightBC").transform.position.x), transform.position.y), Quaternion.identity);
+        Invoke("AddFlyingEnemy", 2);
+    }
+    void AddSpaceship()
+    {
+        Instantiate(EnemySpaceship, new Vector2(Random.Range(GameObject.FindGameObjectWithTag("LeftBC").transform.position.x, GameObject.FindGameObjectWithTag("RightBC").transform.position.x), 0f), Quaternion.identity);
     }
 }
