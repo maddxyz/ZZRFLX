@@ -56,7 +56,6 @@ public class Player : MonoBehaviour {
 			GameMaster.KillPlayer(this);
 		}
 
-		//Debug.LogError("DAMAGED");
 		anim.SetTrigger ("hit");
 		hit.Play ();
 		grunt.Play ();
@@ -73,11 +72,9 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D _colInfo)
 	{
-		//ProjectileAnim _pr = _colInfo.collider.GetComponent<ProjectileAnim>();
 		if (_colInfo.gameObject.tag == "Projectile")
 		{
 			DamagePlayer(20);
-			//DamageEnemy(9999999);
 		}
 	}
 }

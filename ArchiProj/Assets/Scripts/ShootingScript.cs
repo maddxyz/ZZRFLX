@@ -14,16 +14,13 @@ public class ShootingScript : MonoBehaviour {
 
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 
-		wait = start;
+        Invoke("AddProjectile", Random.Range(2f, 4f));
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		if (wait <= 0) {
-			Instantiate (projectile, transform.position, Quaternion.identity);
-			wait = start;
-		} else {
-			wait -= Time.deltaTime;
-		}
-	}
+
+    void AddProjectile()
+    {
+        Instantiate(projectile, transform.position, Quaternion.identity);
+        Invoke("AddProjectile", Random.Range(2f, 4f));
+    }
 }

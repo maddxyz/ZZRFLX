@@ -16,6 +16,10 @@ public class SmartAgent : Agent {
     public override void CollectObservations()
     {
 
+        /* Une petite correction de bug apparu à la dernière minute 
+         * pas très propre à changer donc */
+        int i = 0;
+
         /* Projectiles */
 
         /* Peut paraitre inutile comme ligne : instancier explicitement un tableau de 0 éléments
@@ -30,14 +34,20 @@ public class SmartAgent : Agent {
 
             AddVectorObs(relativePosition.x);
             AddVectorObs(relativePosition.y);
-        }
 
+            /* Ceci est le mal à corriger après */
+            i++;
+
+            if (i == 1)
+                break;
+        }
+        /*
         if(projectiles.Length <= 1)
         {
             AddVectorObs(500.0f);
             AddVectorObs(500.0f);
         }
-
+        */
         if (projectiles.Length <= 0)
         {
             AddVectorObs(500.0f);
@@ -49,39 +59,33 @@ public class SmartAgent : Agent {
         if (GameObject.FindGameObjectWithTag("Enemy2"))
             projectiles = GameObject.FindGameObjectsWithTag("Enemy2");
 
+        i = 0;
         foreach (var enemy in enemies)
         {
             Vector2 relativePosition = enemy.transform.position - transform.position;
 
             AddVectorObs(relativePosition.x);
             AddVectorObs(relativePosition.y);
+
+            /* Ceci est le mal à corriger après */
+            i++;
+
+            if (i == 1)
+                break;
         }
 
+        /*
         if (enemies.Length <= 1)
         {
             AddVectorObs(500.0f);
             AddVectorObs(500.0f);
-        }
+        }*/
 
         if (enemies.Length <= 0)
         {
             AddVectorObs(500.0f);
             AddVectorObs(500.0f);
         }
-        /*if (GameObject.FindGameObjectWithTag("Projectile"))
-        {
-            
-            Vector2 relativePosition = GameObject.FindGameObjectWithTag("Projectile").transform.position - transform.position;
-
-            AddVectorObs(relativePosition.x);
-            AddVectorObs(relativePosition.y);
-        }
-        else
-        {
-            AddVectorObs(500.0f);
-            AddVectorObs(500.0f);
-        }     
-        */
     }
 
     public override void AgentAction(float[] vectorAction, string textAction)
@@ -122,20 +126,6 @@ public class SmartAgent : Agent {
             }
         }
         
-        /*if (GameObject.FindGameObjectWithTag("Projectile"))
-            distanceToTarget = Vector2.Distance(transform.position,
-                                                  GameObject.FindGameObjectWithTag("Projectile").transform.position);
-        else
-            distanceToTarget = 500.0f;
-
-
-        // Reached target
-        if (distanceToTarget < 1.0f)
-        {
-            Done();
-            AddReward(-1.0f);
-        }
-        */
         // Time reward
         AddReward(+0.05f);
         

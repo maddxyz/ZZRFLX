@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class flyingEnemyMove : MonoBehaviour {
 
-    public float speed;
+    public float speed = 5.0f;
     private Transform player;
     private Vector2 target;
 

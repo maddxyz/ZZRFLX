@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileAnim : MonoBehaviour {
 
-	public float speed;
+	public float speed = 5.0f;
 
 	private Transform player;
     private Transform leftBC;
@@ -21,17 +21,12 @@ public class ProjectileAnim : MonoBehaviour {
         firePoint = GameObject.FindGameObjectWithTag("FirePoint").transform;
         groundBC = GameObject.FindGameObjectWithTag("GroundBC").transform;
 
-        exp = GetComponent<ParticleSystem>();
-
-        //target = new Vector2 (player.position.x-150, player.position.y);
-
         /* Utilisation du théorème de Thalès pour calculer y */
         float y = Mathf.Abs((transform.position - groundBC.position).y)
                     + Mathf.Abs((transform.position - leftBC.position).x)
                             * (Mathf.Abs((player.position - groundBC.position).y) - Mathf.Abs((transform.position - groundBC.position).y))
                             / (Mathf.Abs((player.position - transform.position).x));
 
-        //target = new Vector2 (leftBC.position.x, player.position.y);
         if(transform.position.x > player.position.x)
             target = new Vector2(leftBC.position.x, groundBC.position.y + y);
         else
@@ -40,8 +35,7 @@ public class ProjectileAnim : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //if(!exp.isPlaying)
-            transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         if (transform.position.x == target.x && transform.position.y == target.y) {
 			DestroyProjectile ();
@@ -52,7 +46,7 @@ public class ProjectileAnim : MonoBehaviour {
             if (Vector2.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 1.0f)
             {
                 Player p = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-                //p.DamagePlayer(20);
+                p.DamagePlayer(20);
                 Destroy(gameObject);
 
             }
